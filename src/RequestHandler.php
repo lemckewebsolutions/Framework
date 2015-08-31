@@ -13,7 +13,7 @@ abstract class RequestHandler
         }
 
         try {
-            $jsonConfig = json_decode(file_get_contents($filePath));
+            $jsonConfig = json_decode(file_get_contents($filePath), true);
 
             Context::addToConfig($jsonConfig);
         } catch (\Exception $e) {
