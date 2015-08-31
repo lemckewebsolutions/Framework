@@ -7,10 +7,12 @@ abstract class RequestHandler
     {
         try
         {
+            $reflectionClass = new \ReflectionClass($this->getController());
+
             /**
              * @var IGet $controller
              */
-            $controller = new \ReflectionClass($this->getController());
+            $controller = $reflectionClass->newInstance();
 
             switch ($_SERVER["REQUEST_METHOD"])
             {
