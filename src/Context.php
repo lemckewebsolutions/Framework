@@ -4,8 +4,24 @@ namespace LWS\Framework;
 
 abstract class Context
 {
+    /**
+     * @var array
+     */
+    private static $configuration = array();
+
     private static $response;
 
+    /**
+     * @param array $config
+     */
+    public static function addToConfig(array $config)
+    {
+        self::$configuration = array_merge(self::$configuration, $config);
+    }
+
+    /**
+     * @return Response
+     */
     public static function getResponse()
     {
         if (self::$response === null) {
@@ -13,5 +29,13 @@ abstract class Context
         }
 
         return self::$response;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getConfiguration()
+    {
+        return self::$configuration;
     }
 }
