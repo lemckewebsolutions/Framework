@@ -24,4 +24,9 @@ abstract class RequestHandler
             var_dump($exception);
         }
     }
+
+    /**
+     * @return string
+     */
+    protected abstract function getController();
 }

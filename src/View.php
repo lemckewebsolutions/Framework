@@ -1,6 +1,6 @@
 <?php
 
-namespace LWS\JufThirza\Framework;
+namespace LWS\Framework;
 
 class View
 {
