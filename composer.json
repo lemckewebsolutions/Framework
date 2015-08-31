@@ -1,0 +1,9 @@
+{
+  "name": "LWS/Framework",
+  "description": "Source code of the LWS framework",
+  "autoload": {
+    "psr-4": {
+      "LWS\\Framework\\": "src/"
+    }
+  }
+}
