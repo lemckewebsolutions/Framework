@@ -6,6 +6,8 @@ class View
 {
     private $templateFile;
 
+    private $variables = array();
+
     /**
      * @param string $templateFile
      */
@@ -14,9 +16,16 @@ class View
         $this->templateFile = $templateFile;
     }
 
+    public function assignVariable($name, $value)
+    {
+        $this->variables[$name] = $value;
+    }
+
     public function parse()
     {
         ob_start();
+
+        extract($this->variables);
 
         try{
             include($this->templateFile);
@@ -31,5 +40,13 @@ class View
 
         ob_end_clean();
         return $output;
+    }
+
+    /**
+     * @return array
+     */
+    public function getVariables()
+    {
+        return $this->variables;
     }
 }
