@@ -4,8 +4,14 @@ namespace LWS\Framework;
 
 class View
 {
+    /**
+     * @var string
+     */
     private $templateFile;
 
+    /**
+     * @var array
+     */
     private $variables = array();
 
     /**
@@ -16,11 +22,46 @@ class View
         $this->templateFile = $templateFile;
     }
 
+    /**
+     * @param string $name
+     * @param mixed $value
+     */
     public function assignVariable($name, $value)
     {
-        $this->variables[$name] = $value;
+        $this->variables[(string)$name] = $value;
     }
 
+    /**
+     * @param $templatePath
+     * @param array $variables
+     * @return string
+     * @throws \Exception
+     */
+    public function includeTemplate($templatePath, $variables = array())
+    {
+        ob_start();
+
+        extract($variables);
+
+        try{
+            include((string)$templatePath);
+
+            $output = ob_get_contents();
+        }  catch (\Exception $exception) {
+            // Clear the buffer before re-throwing the exception to prevent garbage from being
+            // flushed to the output stream.
+            ob_end_clean();
+            throw $exception;
+        }
+
+        ob_end_clean();
+        return $output;
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
     public function parse()
     {
         ob_start();
