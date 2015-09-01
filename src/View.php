@@ -41,6 +41,8 @@ class View
     {
         ob_start();
 
+        $variables = $this->variables + $variables;
+
         extract($variables);
 
         try{
