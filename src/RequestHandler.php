@@ -1,5 +1,10 @@
 <?php
+
 namespace LWS\Framework;
+
+use LWS\Framework\Http\Context;
+use LWS\Framework\Http\IGet;
+use LWS\Framework\Http\IPost;
 
 abstract class RequestHandler
 {
@@ -28,7 +33,7 @@ abstract class RequestHandler
             $reflectionClass = new \ReflectionClass($this->getController());
 
             /**
-             * @var IGet $controller
+             * @var IGet|IPost $controller
              */
             $controller = $reflectionClass->newInstance();
 
@@ -36,6 +41,10 @@ abstract class RequestHandler
             {
                 case "GET":
                     $controller->get();
+                    break;
+                case "POST":
+                    $controller->post();
+                    break;
             }
 
             echo Context::getResponse();
