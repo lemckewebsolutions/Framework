@@ -1,6 +1,6 @@
 <?php
 
-namespace LWS\Framework;
+namespace LWS\Framework\Http;
 
 class Response
 {

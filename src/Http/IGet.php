@@ -1,5 +1,5 @@
 <?php
-namespace LWS\Framework;
+namespace LWS\Framework\Http;
 
 interface IGet
 {
