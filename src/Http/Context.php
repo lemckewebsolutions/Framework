@@ -20,6 +20,25 @@ abstract class Context
     }
 
     /**
+     * @return \mysqli|null
+     */
+    public static function getDatabaseConnection()
+    {
+        $config = static::getConfiguration();
+
+        if (isset($config["database"]) === true) {
+            return new \mysqli(
+                $config["database"]["host"],
+                $config["database"]["username"],
+                $config["database"]["password"],
+                $config["database"]["database"]
+            );
+        }
+
+        return null;
+    }
+
+    /**
      * @return Response
      */
     public static function getResponse()
