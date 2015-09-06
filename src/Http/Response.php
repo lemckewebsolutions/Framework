@@ -9,6 +9,11 @@ class Response
      */
     private $body = "";
 
+    /**
+     * @var string
+     */
+    private $location;
+
     public function __toString()
     {
         return $this->getBody();
@@ -28,5 +33,21 @@ class Response
     public function setBody($body)
     {
         $this->body = (string)$body;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param string $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = (string)$location;
     }
 }

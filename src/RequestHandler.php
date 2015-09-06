@@ -47,7 +47,16 @@ abstract class RequestHandler
                     break;
             }
 
+            $response = Context::getResponse();
+
+            if ($response->getLocation() !== null) {
+                header("Location: " . $response->getLocation());
+                http_response_code(303);
+                return;
+            }
+
             echo Context::getResponse();
+            http_response_code(200);
         } catch (\Exception $exception)
         {
             var_dump($exception);
