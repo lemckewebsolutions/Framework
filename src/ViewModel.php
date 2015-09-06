@@ -15,6 +15,11 @@ abstract class ViewModel
         return null;
     }
 
+    public function __isset($name)
+    {
+        return isset($this->parameters[$name]);
+    }
+
     public function __set($name, $value)
     {
         $this->parameters[$name] = $value;
