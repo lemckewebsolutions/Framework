@@ -2,6 +2,8 @@
 
 namespace LWS\Framework\Http;
 
+use LWS\Framework\Notification;
+
 abstract class Context
 {
     /**
@@ -39,7 +41,7 @@ abstract class Context
     }
 
     /**
-     * @return array
+     * @return Notification[]
      */
     public function getNotifications()
     {
