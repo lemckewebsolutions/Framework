@@ -43,7 +43,7 @@ abstract class Context
     /**
      * @return Notification[]
      */
-    public function getNotifications()
+    public static function getNotifications()
     {
         if (isset($_SESSION["notifications"]) === true &&
             is_array($_SESSION["notifications"]) === true) {
