@@ -41,6 +41,14 @@ abstract class Context
     }
 
     /**
+     * @param Notification $notification
+     */
+    public static function addNotification(Notification $notification)
+    {
+        $_SESSION["notifications"][] = $notification;
+    }
+
+    /**
      * @return Notification[]
      */
     public static function getNotifications()
