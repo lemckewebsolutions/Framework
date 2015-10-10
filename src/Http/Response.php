@@ -14,6 +14,11 @@ class Response
      */
     private $location;
 
+    /**
+     * @var string
+     */
+    private $status;
+
     public function __toString()
     {
         return $this->getBody();
@@ -49,5 +54,21 @@ class Response
     public function setLocation($location)
     {
         $this->location = (string)$location;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $value
+     */
+    public function setStatus($value)
+    {
+        $this->status = (string)$value;
     }
 }

@@ -51,12 +51,12 @@ abstract class RequestHandler
 
             if ($response->getLocation() !== null) {
                 header("Location: " . $response->getLocation());
-                http_response_code(303);
+                header("HTTP/1.1 " . Context::getResponse()->getStatus());
                 return;
             }
 
+            header("HTTP/1.1 " . Context::getResponse()->getStatus());
             echo Context::getResponse();
-            http_response_code(200);
         } catch (\Exception $exception)
         {
             var_dump($exception);
