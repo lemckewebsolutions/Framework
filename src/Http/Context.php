@@ -2,7 +2,8 @@
 
 namespace LWS\Framework\Http;
 
-use LWS\Framework\Notification;
+use LWS\Framework\Notifications\Container;
+use LWS\Framework\Notifications\Notification;
 
 abstract class Context
 {
@@ -10,6 +11,11 @@ abstract class Context
      * @var array
      */
     private static $configuration = array();
+
+    /**
+     * @var Container
+     */
+    private static $notificationContainer;
 
     private static $response;
 
@@ -53,12 +59,25 @@ abstract class Context
      */
     public static function getNotifications()
     {
-        if (isset($_SESSION["notifications"]) === true &&
-            is_array($_SESSION["notifications"]) === true) {
-            return $_SESSION["notifications"];
+        return static::getNotificationsContainer();
+    }
+
+    /**
+     * @return Container
+     */
+    private static function getNotificationsContainer()
+    {
+        if (static::$notificationContainer === null) {
+            $notifications = [];
+
+            if (isset($_SESSION["notifications"]) === true &&
+                is_array($_SESSION["notifications"]) === true) {
+                $notifications = $_SESSION["notifications"];
+            }
+            static::$notificationContainer = new Container($notifications);
         }
 
-        return [];
+        return static::$notificationContainer;
     }
 
     /**
