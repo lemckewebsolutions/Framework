@@ -55,25 +55,11 @@ abstract class Context
     }
 
     /**
-     * @return Container
+     * @return Notification|null
      */
     public static function getNotifications()
     {
-        if (self::$notificationContainer === null) {
-            self::createNotificationsContainer();
-        }
-
-        return self::$notificationContainer;
-    }
-
-    private static function createNotificationsContainer()
-    {
-        if (isset($_SESSION["notifications"]) === true &&
-            is_array($_SESSION["notifications"]) === true) {
-            self::$notificationContainer = new Container($_SESSION["notifications"]);
-        }
-
-        self::$notificationContainer = new Container([]);
+        return array_shift($_SESSION["notifications"]);
     }
 
     /**
