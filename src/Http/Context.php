@@ -57,7 +57,7 @@ abstract class Context
     /**
      * @return Notification|null
      */
-    public static function getNotifications()
+    public static function getNotification()
     {
         return array_shift($_SESSION["notifications"]);
     }
