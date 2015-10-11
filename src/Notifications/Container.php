@@ -41,6 +41,14 @@ class Container implements \Iterator
         return key($this->notifications);
     }
 
+    /**
+     * @return Notification|false
+     */
+    public function shift()
+    {
+        return array_shift($this->notifications);
+    }
+
     public function valid()
     {
         $key = key($this->notifications);
